@@ -1,0 +1,24 @@
+.body-wrapper{
+    .name{
+        color: red;
+    }
+}
+:global(.title) {
+    color: blue
+}
+.logo{
+    display: block;
+    margin-top: 5px;
+    width: 80px;
+    height: 40px;
+    text-align: center;
+    img{
+        display: block;
+        margin: 0 auto;
+        height: 20px;
+    }
+    span{
+        font-size: 14px;
+        text-align: center;
+    }
+}
