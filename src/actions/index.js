@@ -17,7 +17,6 @@ export const decrement = () => {
 };
 
 export const get_user = (searchData) => {
-    console.log(searchData);
     return {
         type: LOAD_LOGIN,
         payload: {

@@ -7,7 +7,6 @@ const initialState = {
 };
 
 const login = (state = initialState, action = {}) => {
-    console.log(action);
     switch(action.type) {
         case LOAD_LOGIN_FULFILLED:
             return {
