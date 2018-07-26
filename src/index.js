@@ -10,11 +10,14 @@ import {
 import Index from './js/view/index';
 import About from './js/view/about';
 import registerServiceWorker from './registerServiceWorker';
+import thunk from 'redux-thunk';
+import promise from 'redux-promise-middleware';
 import 'antd/dist/antd.css';
 
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import rootReducer from './reducers';
+import configureStore from './store/configureStore';
 
 class App extends Component{
     render(){
@@ -33,17 +36,33 @@ class App extends Component{
     }
 }
 
-const logger = store => next => action => {
-    console.log('dispatching', action);
-    let result = next(action);
-    console.log('next store', store.getState());
-    return result;
-};
+// const logger = store => next => action => {
+//     console.log('dispatching', action);
+//     let result = next(action);
+//     console.log('next store', store.getState());
+//     return result;
+// };
 
-const store = createStore(rootReducer, {}, applyMiddleware(logger));
+// const store = createStore(rootReducer, {}, applyMiddleware(logger));
+// const store = createStore(
+//     rootReducer,
+//     {},
+//     applyMiddleware(thunk, promise())
+// );
+const store = configureStore();
 
 ReactDOM.render(
     <Provider store = { store }>
         <App />
     </Provider>, document.getElementById('root'));
+
+if (module.hot) {
+  module.hot.accept(() => {
+    ReactDOM.render(
+        <Provider store = { store }>
+            <App />
+        </Provider>, document.getElementById('root'));
+  });
+}
+
 registerServiceWorker();

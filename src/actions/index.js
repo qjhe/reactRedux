@@ -1,17 +1,27 @@
-import { INCREMENT, DECREMENT } from '../constans';
+import axios from 'axios';
+import { INCREMENT, DECREMENT } from '../constants';
+import { LOAD_LOGIN } from '../constants';
 
-const increment = () => {
+export const increment = () => {
     return {
         type: INCREMENT,
         index: 0,
     };
 };
 
-const decrement = () => {
+export const decrement = () => {
     return {
         type: DECREMENT,
         index: 1,
     };
 };
 
-export { increment, decrement };
+export const get_user = (searchData) => {
+    console.log(searchData);
+    return {
+        type: LOAD_LOGIN,
+        payload: {
+            promise: axios.get(`http://newsapi.gugujiankong.com/Handler.ashx?${searchData}`)
+        }
+    };
+};
