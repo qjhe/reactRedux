@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { Row, Col, Menu, Icon, Button } from 'antd';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -8,6 +9,11 @@ import mStyle from '../../../css/mobile.scss';
 class MFooter extends Component {
     render() {
         const { counter, user, increment, decrement } = this.props;
+        let query = {
+          id: 3,
+          name: 'Lucy',
+          age: 29,  
+        };
         return (
             <footer>
                 <Row>
@@ -16,6 +22,7 @@ class MFooter extends Component {
                         &copy;&nbsp;2018 ReactNews. All Rights Reserved.
                         <p>数值:{counter} - { user }</p>
                         <p><Button onClick={() => increment()}>incr</Button>&nbsp;&nbsp;<Button onClick={() => decrement()}>decr</Button></p>
+                        <p><Link to={{pathname:"/About", state:query}}>about</Link></p>
                     </Col>
                     <Col span={2}></Col>
                 </Row>

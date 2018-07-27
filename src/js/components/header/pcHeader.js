@@ -111,6 +111,7 @@ class PcHeader extends Component {
         });
     }
     render() {
+        const { error, isFetching, user } = this.props.login;
         let { getFieldProps } = this.props.form;
         const userShow = this.state.hasLogined
             ?
@@ -129,7 +130,7 @@ class PcHeader extends Component {
             </Menu.Item>;
         return (
             <header>
-                <Spin spinning={this.state.loading}>
+                <Spin spinning={isFetching}>
                     <Row>
                         <Col span={2}></Col>
                         <Col span={4}>
@@ -216,7 +217,7 @@ const mapDispatchToProps = (dispatch) => {
 const mapStateToProps = (state) => {
     return {
         counter: state.counter,
-        user: state.user,
+        login: state.login,
     };
 };
 
